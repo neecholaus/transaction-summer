@@ -31,7 +31,9 @@ func transactionSources() []string {
 
 	var sources []string
 	for _, v := range files {
-		sources = append(sources, v.Name())
+		if strings.Contains(v.Name(), ".csv") {
+			sources = append(sources, v.Name())
+		}
 	}
 
 	return sources
