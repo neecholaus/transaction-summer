@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -18,8 +19,15 @@ func main() {
 		processSource(v, &dict)
 	}
 
-	for k, v := range dict {
-		fmt.Println(k, v)
+	// sort keys
+	keys := make([]string, 0, len(dict))
+	for key := range dict {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+
+	for _, key := range keys {
+		fmt.Println(key, dict[key])
 	}
 }
 
